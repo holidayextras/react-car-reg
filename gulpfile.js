@@ -48,6 +48,15 @@ gulp.task('less', function() {
   .pipe(connect.reload());
 });
 
+gulp.task('toolkitCSS', function() {
+  return gulp.src('./node_modules/ui-toolkit/src/less/toolkit.less')
+  .pipe(less())
+  .on('error', logError)
+  .pipe(gulp.dest(DEMO_DEST))
+  .pipe(connect.reload());
+});
+
+
 gulp.task('buildDemo', function() {
   return gulp.src(DEMO_JS)
   .pipe(babel())
@@ -130,9 +139,9 @@ gulp.task('test', istanbul.createTask({
 // --------- COMPOSITE TASKS --------
 // ----------------------------------
 gulp.task('build-all', function() {
-  gulp.start('build', 'buildDemo', 'less');
+  gulp.start('build', 'buildDemo', 'less', 'toolkitCSS');
 });
 
 gulp.task('start', function(cb) {
-  return runSequence('build', 'buildDemo', 'less', 'connect', ['watch', 'open'], cb);
+  return runSequence('build', 'buildDemo', 'less', 'toolkitCSS', 'connect', ['watch', 'open'], cb);
 });

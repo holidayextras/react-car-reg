@@ -1,5 +1,5 @@
-# React Component Template
-This is a barebones publishable React component template that can be cloned pushed back up under a new repository to ease creation of new React components.
+# React Car Registration
+A react component for validating car registrations.
 
 ## Installation
 ```

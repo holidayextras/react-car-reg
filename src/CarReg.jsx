@@ -5,14 +5,18 @@ var UIToolkit = require('ui-toolkit');
 
 var CarReg = React.createClass({
   propTypes: {
+    label: React.PropTypes.string,
     countries: React.PropTypes.array.isRequired,
     errorMessage: React.PropTypes.string
   },
+
   getDefaultProps: function() {
     return {
+      label: 'Country',
       errorMessage: 'This registration may be invalid'
     };
   },
+
   getInitialState: function() {
     var firstCountry = this.getCountry(0);
     return {
@@ -20,10 +24,12 @@ var CarReg = React.createClass({
       validator: firstCountry.validation || ''
     };
   },
+
   getCountry: function(index) {
     if(!this.props.countries || !this.props.countries[index]) return {};
     return this.props.countries[index];
   },
+
   updateInputAttributes: function(select) {
     var selectedIndex = select.currentTarget.selectedIndex;
     var country = this.getCountry(selectedIndex);
@@ -32,12 +38,13 @@ var CarReg = React.createClass({
       validator: country.validation
     });
   },
+
   render: function() {
     return (
       <div className="carReg">
-        <UIToolkit.Select label="Country:" handleChange={this.updateInputAttributes}>
-          {this.props.countries.map(function(country, index){
-            return <option key={index} name={index}>{country.name}</option>;
+        <UIToolkit.Select label={this.props.label} handleChange={this.updateInputAttributes}>
+          {this.props.countries.map(function(country, index) {
+            return <option key={index} name={index}> {country.name} </option>;
           })}
         </UIToolkit.Select>
         <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validator} errorMessage={this.props.errorMessage} />

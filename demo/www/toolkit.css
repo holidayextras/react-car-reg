@@ -792,6 +792,25 @@ img.component-image,
   margin-left: 1em;
   margin-bottom: 0.5em;
 }
+.component-select .component-select-label {
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  display: inline-block;
+  padding: 0.5em;
+}
+.component-select .component-select-field {
+  background: #fafafa;
+  border: solid 1px #d4d4d4;
+  border-radius: 0.25em;
+  line-height: 1.61803399em;
+  padding: 0.5em 1em;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+}
+.component-select.multiple .component-select-label {
+  float: left;
+  margin-right: 1em;
+}
 /*------------------------------------*\
     #Lozenge
 \*------------------------------------*/

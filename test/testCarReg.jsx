@@ -4,7 +4,7 @@ var jsdom = require('mocha-jsdom');
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
 var assert = require('assert');
-var Component = require('../');
+var CarReg = require('../');
 
 describe('Loading component', function() {
 
@@ -12,13 +12,11 @@ describe('Loading component', function() {
   var props = null;
 
   beforeEach(function() {
-    props = {
-      message: 'foo'
-    };
-    TestUtils.renderIntoDocument(<Component {...props} />);
+    props = {};
+    TestUtils.renderIntoDocument(<CarReg {...props} />);
   });
 
   it('is a valid React element', function() {
-    assert.ok(TestUtils.isElement(<Component {...props} />));
+    assert.ok(TestUtils.isElement(<CarReg {...props} />));
   });
 });

@@ -42,9 +42,9 @@ var CarReg = React.createClass({
   render: function() {
     return (
       <div className="carReg">
-        <UIToolkit.Select label={this.props.label} handleChange={this.updateInputAttributes}>
+        <UIToolkit.Select label={this.props.label} handleChange={this.updateInputAttributes} ref='select'>
           {this.props.countries.map(function(country, index) {
-            return <option key={index} name={index}> {country.name} </option>;
+            return <option key={index} value={index}> {country.name} </option>;
           })}
         </UIToolkit.Select>
         <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validator} errorMessage={this.props.errorMessage} />

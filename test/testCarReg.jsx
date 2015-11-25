@@ -12,28 +12,26 @@ var CarReg = require('../src/CarReg.jsx');
 
 describe('Car Reg component', function() {
 
-  var props;
+  var options;
   var element;
 
   beforeEach(function() {
-    props = {
-      countries: [
-        { value: 0, name: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
-        { value: 1, name: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
-      ]
-    };
-    element = TestUtils.renderIntoDocument(<CarReg {...props} />);
+  options = [
+        { name: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
+        { name: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
+      ];
+    element = TestUtils.renderIntoDocument(<CarReg options={options} />);
   });
 
   it('is a valid React element', function() {
-    expect(TestUtils.isElement(<CarReg {...props} />)).to.equal(true);
+    expect(TestUtils.isElement(<CarReg options={options} />)).to.equal(true);
   });
 
   it('renders with default props', function () {
     element = <CarReg />;
     expect(element.props).to.eql({
-      errorMessage: "This registration may be invalid",
-      label: "Country"
+      label: 'Choices:',
+      errorMessage: 'An error has occured'
     });
   });
 

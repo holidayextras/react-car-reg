@@ -11,7 +11,8 @@ var CarReg = React.createClass({
         text: React.PropTypes.string.isRequired,
         placeholder: React.PropTypes.string,
         validation: React.PropTypes.instanceOf(RegExp)
-      })).isRequired,
+      })
+    ).isRequired,
     errorMessage: React.PropTypes.string,
     children: React.PropTypes.any
   },

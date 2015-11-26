@@ -6,8 +6,14 @@ var UIToolkit = require('ui-toolkit');
 var CarReg = React.createClass({
   propTypes: {
     label: React.PropTypes.string,
-    options: React.PropTypes.array.isRequired,
-    errorMessage: React.PropTypes.string
+    options: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        text: React.PropTypes.string.isRequired,
+        placeholder: React.PropTypes.string,
+        validation: React.PropTypes.instanceOf(RegExp)
+      })).isRequired,
+    errorMessage: React.PropTypes.string,
+    children: React.PropTypes.any
   },
 
   getDefaultProps: function() {
@@ -20,7 +26,7 @@ var CarReg = React.createClass({
   getInitialState: function() {
     return {
       placeholder:  this.props.options[0].placeholder || null,
-      validator: this.props.options[0].validator || null
+      validation: this.props.options[0].validation || null
     }
   },
 
@@ -28,7 +34,7 @@ var CarReg = React.createClass({
     var selectedIndex = e.currentTarget.selectedIndex;
     this.setState({
       placeholder: this.props.options[selectedIndex].placeholder,
-      validator: this.props.options[selectedIndex].validator,
+      validation: this.props.options[selectedIndex].validation,
     });
   },
 
@@ -40,7 +46,7 @@ var CarReg = React.createClass({
             return <option key={index}>{option.text}</option>;
           })}
         </UIToolkit.Select>
-        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validator} errorMessage={this.props.errorMessage} />
+        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} />
       </div>
     );
   }

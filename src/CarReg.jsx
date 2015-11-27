@@ -5,42 +5,49 @@ var UIToolkit = require('ui-toolkit');
 
 var CarReg = React.createClass({
   propTypes: {
-    countries: React.PropTypes.array.isRequired,
-    errorMessage: React.PropTypes.string
+    label: React.PropTypes.string,
+    options: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        text: React.PropTypes.string.isRequired,
+        placeholder: React.PropTypes.string,
+        validation: React.PropTypes.instanceOf(RegExp)
+      })
+    ).isRequired,
+    errorMessage: React.PropTypes.string,
+    children: React.PropTypes.any
   },
+
   getDefaultProps: function() {
     return {
-      errorMessage: 'This registration may be invalid'
+      label: 'Choices:',
+      errorMessage: 'An error has occured'
     };
   },
+
   getInitialState: function() {
-    var firstCountry = this.getCountry(0);
     return {
-      placeholder: firstCountry.placeholder || '',
-      validator: firstCountry.validation || ''
-    };
+      placeholder:  this.props.options[0].placeholder || null,
+      validation: this.props.options[0].validation || null
+    }
   },
-  getCountry: function(index) {
-    if(!this.props.countries || !this.props.countries[index]) return {};
-    return this.props.countries[index];
-  },
-  updateInputAttributes: function(select) {
-    var selectedIndex = select.currentTarget.selectedIndex;
-    var country = this.getCountry(selectedIndex);
+
+  optionChanged: function(e) {
+    var selectedIndex = e.currentTarget.selectedIndex;
     this.setState({
-      placeholder: country.placeholder,
-      validator: country.validation
+      placeholder: this.props.options[selectedIndex].placeholder,
+      validation: this.props.options[selectedIndex].validation,
     });
   },
+
   render: function() {
     return (
       <div className="carReg">
-        <UIToolkit.Select label="Country:" handleChange={this.updateInputAttributes}>
-          {this.props.countries.map(function(country, index){
-            return <option key={index} name={index}>{country.name}</option>;
+        <UIToolkit.Select label={this.props.label} handleChange={this.optionChanged}>
+          {this.props.options.map(function(option, index){
+            return <option key={index}>{option.text}</option>;
           })}
         </UIToolkit.Select>
-        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validator} errorMessage={this.props.errorMessage} />
+        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} />
       </div>
     );
   }

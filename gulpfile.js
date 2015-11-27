@@ -126,12 +126,13 @@ gulp.task('test', istanbul.createTask({
   src: TESTS,
   istanbul: {
     coverageVariable: 'COMPONENT_TEST_COVERAGE',
-    exclude: /node_modules/
+    exclude: /node_modules|test/
   },
   threshold: 100,
   thresholdType: 'lines',
   coverage: {
-    reporters: ['text-summary']
+    reporters: ['text-summary', 'lcov'],
+    directory: 'coverage'
   }
 }));
 

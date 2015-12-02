@@ -14,7 +14,7 @@
   "author": "Andy Castle <andrew.castle@holidayextras.com>, Sam Smart <sam.smart@holidayextras.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "^0.14.0",
+    "react": "^0.14.2",
     "ui-toolkit": "https://github.com/holidayextras/ui-toolkit.git#0.26.0"
   },
   "devDependencies": {
@@ -36,7 +36,6 @@
     "make-up": "^5.3.1",
     "mocha": "^2.3.3",
     "mocha-jsdom": "^1.0.0",
-    "react": "^0.14.2",
     "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.2",
     "run-sequence": "^1.1.4",

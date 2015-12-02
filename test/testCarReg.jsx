@@ -5,7 +5,7 @@ require('./helpers/');
 var React = require('react');
 var UIToolkit = require('ui-toolkit');
 var TestUtils = require('react-addons-test-utils');
-//var sinon = require('sinon');
+var sinon = require('sinon');
 var CarReg = require('../src/CarReg.jsx');
 
 
@@ -18,8 +18,7 @@ describe('Car Reg component', function() {
   var stub;
 
   beforeEach(function() {
-    // stub = sinon.stub();
-    // stub = function() {throw new Error('x')}
+    stub = sinon.stub();
     options = [
       { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
       { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
@@ -27,10 +26,6 @@ describe('Car Reg component', function() {
     element = TestUtils.renderIntoDocument(<CarReg options={options} inputEntered={stub}/>);
     input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
     select = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select);
-  });
-
-  afterEach(function() {
-    // stub.restore();
   });
 
   it('is a valid React element', function() {
@@ -65,13 +60,14 @@ describe('Car Reg component', function() {
     describe('input entered', function() {
       describe('when input is entered', function() {
         it('fires callback', function() {
-          // console.log(input);
-          TestUtils.Simulate.change(input, {
+          var node = TestUtils.findRenderedDOMComponentWithClass(input, 'component-input-field').getDOMNode();
+          console.log(node);
+          TestUtils.Simulate.change(node, {
             target: {
               value: '1234'
             }
           });
-          // expect(stub).to.have.been.called();
+          expect(stub).to.have.been.called();
         });
       });
     });

@@ -3,10 +3,9 @@
 require('./helpers/');
 
 var React = require('react');
-var ReactDOM = require('react-dom');
 var UIToolkit = require('ui-toolkit');
 var TestUtils = require('react-addons-test-utils');
-var sinon = require('sinon');
+//var sinon = require('sinon');
 var CarReg = require('../src/CarReg.jsx');
 
 
@@ -20,7 +19,7 @@ describe('Car Reg component', function() {
 
   beforeEach(function() {
     // stub = sinon.stub();
-    stub = function() {throw new Error('x')}
+    // stub = function() {throw new Error('x')}
     options = [
       { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
       { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
@@ -30,15 +29,15 @@ describe('Car Reg component', function() {
     select = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select);
   });
 
-  afterEach(function(){
+  afterEach(function() {
     // stub.restore();
-  })
+  });
 
   it('is a valid React element', function() {
     expect(TestUtils.isElement(<CarReg options={options} />)).to.equal(true);
   });
 
-  it('renders with default props', function () {
+  it('renders with default props', function() {
     options = [];
     element = <CarReg options={options}/>;
     expect(element.props.label).to.eql('Choices:');
@@ -46,15 +45,15 @@ describe('Car Reg component', function() {
   });
 
   it('is rendered with given values', function() {
-    var options = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select).props;
-    expect(options.children.length).to.equal(2);
+    var option = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select).props;
+    expect(option.children.length).to.equal(2);
   });
 
   describe('props', function() {
     var placeholderValue;
     var validatorValue;
 
-    beforeEach(function(){
+    beforeEach(function() {
       placeholderValue = input.props.placeholder;
       validatorValue = input.props.validator;
     });
@@ -64,8 +63,8 @@ describe('Car Reg component', function() {
     });
 
     describe('input entered', function() {
-      describe('when input is entered', function(){
-        it('fires callback', function(){
+      describe('when input is entered', function() {
+        it('fires callback', function() {
           // console.log(input);
           TestUtils.Simulate.change(input, {
             target: {
@@ -73,18 +72,15 @@ describe('Car Reg component', function() {
             }
           });
           // expect(stub).to.have.been.called();
-        })
-      })
-    })
+        });
+      });
+    });
 
     describe('when select is changed', function() {
       it('should change the placeholder', function() {
-        var options = TestUtils.scryRenderedDOMComponentsWithTag(select, 'option');
-        select.handleChange({currentTarget: {selectedIndex: 1}})
+        select.handleChange({ currentTarget: { selectedIndex: 1 } });
         expect(input.props.placeholder).to.equal('1234');
-
       });
-
     });
 
     describe('if only name is set', function() {

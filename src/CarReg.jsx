@@ -27,16 +27,16 @@ var CarReg = React.createClass({
 
   getInitialState: function() {
     return {
-      placeholder:  this.props.options[0].placeholder || null,
+      placeholder: this.props.options[0].placeholder || null,
       validation: this.props.options[0].validation || null
-    }
+    };
   },
 
   optionChanged: function(e) {
     var selectedIndex = e.currentTarget.selectedIndex;
     this.setState({
       placeholder: this.props.options[selectedIndex].placeholder,
-      validation: this.props.options[selectedIndex].validation,
+      validation: this.props.options[selectedIndex].validation
     });
   },
 
@@ -44,11 +44,11 @@ var CarReg = React.createClass({
     return (
       <div className="carReg">
         <UIToolkit.Select label={this.props.label} handleChange={this.optionChanged}>
-          {this.props.options.map(function(option, index){
+          {this.props.options.map(function(option, index) {
             return <option key={index}>{option.text}</option>;
           })}
         </UIToolkit.Select>
-        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
+        <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
       </div>
     );
   }

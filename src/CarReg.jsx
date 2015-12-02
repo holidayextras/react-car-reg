@@ -14,7 +14,8 @@ var CarReg = React.createClass({
       })
     ).isRequired,
     errorMessage: React.PropTypes.string,
-    children: React.PropTypes.any
+    children: React.PropTypes.any,
+    inputEntered: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -47,7 +48,7 @@ var CarReg = React.createClass({
             return <option key={index}>{option.text}</option>;
           })}
         </UIToolkit.Select>
-        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} />
+        <UIToolkit.Input type='text' placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
       </div>
     );
   }

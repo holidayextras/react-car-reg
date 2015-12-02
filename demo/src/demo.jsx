@@ -20,6 +20,7 @@ var options = [
     { text: 'Spanien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
     { text: 'Tschechien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i }
   ];
+  var callback = function(e) {e.currentTarget.value};
 
 
-ReactDOM.render(<CarReg options={options} label={label} errorMessage={errorMessage} />, document.getElementById('example'));
+ReactDOM.render(<CarReg options={options} label={label} errorMessage={errorMessage} inputEntered={callback} />, document.getElementById('example'));

@@ -16,16 +16,23 @@ describe('Car Reg component', function() {
   var element;
   var input;
   var select;
+  var stub;
 
   beforeEach(function() {
-  options = [
-        { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
-        { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
-      ];
-    element = TestUtils.renderIntoDocument(<CarReg options={options} />);
+    // stub = sinon.stub();
+    stub = function() {throw new Error('x')}
+    options = [
+      { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
+      { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
+    ];
+    element = TestUtils.renderIntoDocument(<CarReg options={options} inputEntered={stub}/>);
     input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
     select = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select);
   });
+
+  afterEach(function(){
+    // stub.restore();
+  })
 
   it('is a valid React element', function() {
     expect(TestUtils.isElement(<CarReg options={options} />)).to.equal(true);
@@ -56,6 +63,20 @@ describe('Car Reg component', function() {
       expect(placeholderValue).to.equal('XXXX');
     });
 
+    describe('input entered', function() {
+      describe('when input is entered', function(){
+        it('fires callback', function(){
+          // console.log(input);
+          TestUtils.Simulate.change(input, {
+            target: {
+              value: '1234'
+            }
+          });
+          // expect(stub).to.have.been.called();
+        })
+      })
+    })
+
     describe('when select is changed', function() {
       it('should change the placeholder', function() {
         var options = TestUtils.scryRenderedDOMComponentsWithTag(select, 'option');
@@ -69,10 +90,10 @@ describe('Car Reg component', function() {
     describe('if only name is set', function() {
 
       beforeEach(function() {
-      options = [
-            { text: 'Test1' },
-            { text: 'Test2' }
-          ];
+        options = [
+          { text: 'Test1' },
+          { text: 'Test2' }
+        ];
         element = TestUtils.renderIntoDocument(<CarReg options={options} />);
         input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
       });

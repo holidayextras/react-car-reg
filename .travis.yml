@@ -6,3 +6,18 @@ cache:
   - node_modules
 
 script: npm run ci
+
+deploy:
+  provider: s3
+  access_key_id: foo
+  secret_access_key:
+    secure: foo
+  bucket: hx-production-repo
+  skip_cleanup: true
+  region: eu-west-1
+  local-dir: example
+  upload-dir: hx-react-car-reg
+  upload_dir: hx-react-car-reg
+  acl: public_read
+  on:
+    branch: master

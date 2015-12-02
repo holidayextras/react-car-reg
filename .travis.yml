@@ -1,6 +1,10 @@
 sudo: false
 language: node_js
 
+install:
+- npm install npm@2.9.1
+- ./node_modules/.bin/npm install
+
 cache:
   directories:
   - node_modules

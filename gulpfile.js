@@ -14,7 +14,7 @@ var ghPages = require('gulp-gh-pages');
 var runSequence = require('run-sequence');
 var istanbul = require('gulp-jsx-coverage');
 
-var NPM_JS = ['./src/**/*.js*'];
+var NPM_JS = ['./dist/**/*.js'];
 var NPM_STYLES = ['./src/**/*.less', './src/**/*.css'];
 var DEMO_JS = ['./demo/src/**/*.js*'];
 var DEMO_DEST = './demo/www/';
@@ -35,6 +35,13 @@ function logError(error) {
 gulp.task('build', function() {
   return gulp.src(NPM_JS)
   .pipe(babel())
+  .on('error', logError)
+  .pipe(browserify({
+    global: true,
+    debug: true
+  }))
+  .on('error', logError)
+  .pipe(uglify())
   .on('error', logError)
   .pipe(gulp.dest(NPM_DEST));
 });

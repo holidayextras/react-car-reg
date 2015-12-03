@@ -3,3 +3,5 @@ lib/*
 .eslintrc
 npm-debug.log
 coverage
+demo/.DS_Store
+demo/www/.DS_Store

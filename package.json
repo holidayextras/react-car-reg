@@ -14,6 +14,7 @@
   "author": "Andy Castle <andrew.castle@holidayextras.com>, Sam Smart <sam.smart@holidayextras.com>",
   "license": "MIT",
   "dependencies": {
+    "browserify-shim": "^3.8.11",
     "react": "^0.14.0",
     "ui-toolkit": "git+ssh://git@github.com:holidayextras/ui-toolkit.git#0.26.0"
   },
@@ -43,5 +44,8 @@
     "run-sequence": "^1.1.4",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
+  },
+  "browserify-shim": {
+    "react": "global:React"
   }
 }

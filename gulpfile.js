@@ -14,7 +14,7 @@ var ghPages = require('gulp-gh-pages');
 var runSequence = require('run-sequence');
 var istanbul = require('gulp-jsx-coverage');
 
-var NPM_JS = ['./dist/**/*.js'];
+var NPM_JS = ['./src/**/*.js*'];
 var NPM_STYLES = ['./src/**/*.less', './src/**/*.css'];
 var DEMO_JS = ['./demo/src/**/*.js*'];
 var DEMO_DEST = './demo/www/';
@@ -120,10 +120,10 @@ gulp.task('connect', function() {
 
 gulp.task('open', function() {
   return gulp.src(__filename)
-    .pipe(open({
-      uri: 'http://localhost:8090/',
-      app: 'google chrome'
-    }));
+  .pipe(open({
+    uri: 'http://localhost:8090/',
+    app: 'google chrome'
+  }));
 });
 
 // ----------------------------------
@@ -131,8 +131,8 @@ gulp.task('open', function() {
 // ----------------------------------
 gulp.task('publish-docs', function() {
   return gulp.src(GH_PAGES)
-    .pipe(ghPages())
-    .on('error', logError);
+  .pipe(ghPages())
+  .on('error', logError);
 });
 
 // ----------------------------------

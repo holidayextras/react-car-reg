@@ -22,9 +22,6 @@ var CarReg = React.createClass({
     return {
       label: 'Choices:',
       errorMessage: 'An error has occured',
-      inputEntered: function(e) {
-        return e.currentTarget.value;
-      },
       options: [
         { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[ ]{0,1}[A-Z]{0,2}\s?[0-9]{1,4}[H]{0,1}/i },
         { text: 'Anderes Land', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },

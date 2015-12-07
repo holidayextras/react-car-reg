@@ -4,5 +4,6 @@ var ReactDOM = require('react-dom');
 
 var label = 'Country';
 var errorMessage = 'This registration may be invalid';
+var callback = function(e) { e.currentTarget.value };
 
-ReactDOM.render(<CarReg label={label} errorMessage={errorMessage} />, document.getElementById('example'));
+ReactDOM.render(<CarReg label={label} errorMessage={errorMessage} inputEntered={callback} />, document.getElementById('example'));

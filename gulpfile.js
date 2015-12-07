@@ -36,13 +36,6 @@ gulp.task('build', function() {
   return gulp.src(NPM_JS)
   .pipe(babel())
   .on('error', logError)
-  .pipe(browserify({
-    global: true,
-    debug: true
-  }))
-  .on('error', logError)
-  .pipe(uglify())
-  .on('error', logError)
   .pipe(gulp.dest(NPM_DEST));
 });
 

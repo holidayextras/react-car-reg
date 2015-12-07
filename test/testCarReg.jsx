@@ -60,8 +60,7 @@ describe('Car Reg component', function() {
     describe('input entered', function() {
       describe('when input is entered', function() {
         it('fires callback', function() {
-          var node = TestUtils.findRenderedDOMComponentWithClass(input, 'component-input-field').getDOMNode();
-          console.log(node);
+          var node = TestUtils.findRenderedDOMComponentWithClass(input, 'component-input-field');
           TestUtils.Simulate.change(node, {
             target: {
               value: '1234'

@@ -52,7 +52,7 @@ gulp.task('build-dist', function() {
   .on('error', logError)
   .pipe(uglify())
   .on('error', logError)
-  .pipe(gulp.dest(NPM_DEST))
+  .pipe(gulp.dest(NPM_DEST));
 });
 
 gulp.task('less', function() {

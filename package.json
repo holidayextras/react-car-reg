@@ -46,6 +46,7 @@
     "sinon-chai": "^2.8.0"
   },
   "browserify-shim": {
-    "react": "global:React"
+    "react": "global:React",
+    "ui-toolkit": "global:uiToolkit"
   }
 }

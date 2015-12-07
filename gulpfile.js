@@ -52,7 +52,7 @@ gulp.task('build-dist', function() {
   .on('error', logError)
   .pipe(uglify())
   .on('error', logError)
-  .pipe(gulp.dest(NPM_DEST))
+  .pipe(gulp.dest(NPM_DEST));
 });
 
 gulp.task('less', function() {
@@ -120,10 +120,10 @@ gulp.task('connect', function() {
 
 gulp.task('open', function() {
   return gulp.src(__filename)
-    .pipe(open({
-      uri: 'http://localhost:8090/',
-      app: 'google chrome'
-    }));
+  .pipe(open({
+    uri: 'http://localhost:8090/',
+    app: 'google chrome'
+  }));
 });
 
 // ----------------------------------
@@ -131,8 +131,8 @@ gulp.task('open', function() {
 // ----------------------------------
 gulp.task('publish-docs', function() {
   return gulp.src(GH_PAGES)
-    .pipe(ghPages())
-    .on('error', logError);
+  .pipe(ghPages())
+  .on('error', logError);
 });
 
 // ----------------------------------

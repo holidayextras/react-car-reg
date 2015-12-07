@@ -3,7 +3,6 @@
 require('./helpers/');
 
 var React = require('react');
-var ReactDOM = require('react-dom');
 var UIToolkit = require('ui-toolkit');
 var TestUtils = require('react-addons-test-utils');
 var sinon = require('sinon');
@@ -16,13 +15,15 @@ describe('Car Reg component', function() {
   var element;
   var input;
   var select;
+  var stub;
 
   beforeEach(function() {
-  options = [
-        { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
-        { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
-      ];
-    element = TestUtils.renderIntoDocument(<CarReg options={options} />);
+    stub = sinon.stub();
+    options = [
+      { text: 'Test1', placeholder: 'XXXX', validation: /^[A-Z]{3}/i },
+      { text: 'Test2', placeholder: '1234', validation: /^[0-9]{4}/i }
+    ];
+    element = TestUtils.renderIntoDocument(<CarReg options={options} inputEntered={stub}/>);
     input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
     select = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select);
   });
@@ -31,7 +32,7 @@ describe('Car Reg component', function() {
     expect(TestUtils.isElement(<CarReg options={options} />)).to.equal(true);
   });
 
-  it('renders with default props', function () {
+  it('renders with default props', function() {
     options = [];
     element = <CarReg options={options}/>;
     expect(element.props.label).to.eql('Choices:');
@@ -39,15 +40,15 @@ describe('Car Reg component', function() {
   });
 
   it('is rendered with given values', function() {
-    var options = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select).props;
-    expect(options.children.length).to.equal(2);
+    var option = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select).props;
+    expect(option.children.length).to.equal(2);
   });
 
   describe('props', function() {
     var placeholderValue;
     var validatorValue;
 
-    beforeEach(function(){
+    beforeEach(function() {
       placeholderValue = input.props.placeholder;
       validatorValue = input.props.validator;
     });
@@ -56,23 +57,34 @@ describe('Car Reg component', function() {
       expect(placeholderValue).to.equal('XXXX');
     });
 
+    describe('input entered', function() {
+      describe('when input is entered', function() {
+        it('fires callback', function() {
+          var node = TestUtils.findRenderedDOMComponentWithClass(input, 'component-input-field');
+          TestUtils.Simulate.change(node, {
+            target: {
+              value: '1234'
+            }
+          });
+          expect(stub).to.have.been.called();
+        });
+      });
+    });
+
     describe('when select is changed', function() {
       it('should change the placeholder', function() {
-        var options = TestUtils.scryRenderedDOMComponentsWithTag(select, 'option');
-        select.handleChange({currentTarget: {selectedIndex: 1}})
+        select.handleChange({ currentTarget: { selectedIndex: 1 } });
         expect(input.props.placeholder).to.equal('1234');
-
       });
-
     });
 
     describe('if only name is set', function() {
 
       beforeEach(function() {
-      options = [
-            { text: 'Test1' },
-            { text: 'Test2' }
-          ];
+        options = [
+          { text: 'Test1' },
+          { text: 'Test2' }
+        ];
         element = TestUtils.renderIntoDocument(<CarReg options={options} />);
         input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
       });

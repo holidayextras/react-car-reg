@@ -46,6 +46,22 @@ gulp.task('build', function() {
   .pipe(gulp.dest(NPM_DEST));
 });
 
+gulp.task('build-dist', function() {
+  return gulp.src(NPM_JS)
+  .pipe(babel())
+  .on('error', logError)
+  .pipe(browserify({
+    standalone: 'CarReg',
+    transform: [
+      require('browserify-shim')
+    ]
+  }))
+  .on('error', logError)
+  .pipe(uglify())
+  .on('error', logError)
+  .pipe(gulp.dest(NPM_DEST))
+});
+
 gulp.task('less', function() {
   return gulp.src(NPM_STYLES)
   .pipe(less())

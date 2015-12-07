@@ -14,14 +14,9 @@
   "author": "Andy Castle <andrew.castle@holidayextras.com>, Sam Smart <sam.smart@holidayextras.com>",
   "license": "MIT",
   "dependencies": {
-<<<<<<< HEAD
-    "react": "^0.14.2",
-    "ui-toolkit": "https://github.com/holidayextras/ui-toolkit.git#0.26.0"
-=======
     "browserify-shim": "^3.8.11",
     "react": "^0.14.0",
     "ui-toolkit": "git+ssh://git@github.com:holidayextras/ui-toolkit.git#0.26.0"
->>>>>>> master
   },
   "devDependencies": {
     "assert": "^1.3.0",

@@ -6,6 +6,8 @@ var UIToolkit = require('ui-toolkit');
 var CarReg = React.createClass({
   propTypes: {
     label: React.PropTypes.string,
+    labelContainerClass: React.PropTypes.string,
+    inputContainerClass: React.PropTypes.string,
     options: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         text: React.PropTypes.string.isRequired,
@@ -22,6 +24,8 @@ var CarReg = React.createClass({
     return {
       label: 'Choices:',
       errorMessage: 'An error has occured',
+      labelContainerClass: 'labelContainer',
+      inputContainerClass: 'inputContainer',
       options: [
         { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[ ]{0,1}[A-Z]{0,2}\s?[0-9]{1,4}[H]{0,1}/i },
         { text: 'Anderes Land', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
@@ -59,12 +63,17 @@ var CarReg = React.createClass({
   render: function() {
     return (
       <div className="carReg">
-        <UIToolkit.Select label={this.props.label} handleChange={this.optionChanged}>
-          {this.props.options.map(function(option, index) {
-            return <option key={index}>{option.text}</option>;
-          })}
-        </UIToolkit.Select>
-        <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
+        <div className="{this.props.labelContainerClass}">
+          <label>{this.props.label}</label>
+        </div>
+        <div className="{this.props.inputContainerClass}">
+          <UIToolkit.Select handleChange={this.optionChanged}>
+            {this.props.options.map(function(option, index) {
+              return <option key={index}>{option.text}</option>;
+            })}
+          </UIToolkit.Select>
+          <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
+        </div>
       </div>
     );
   }

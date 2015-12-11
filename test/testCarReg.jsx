@@ -44,6 +44,16 @@ describe('Car Reg component', function() {
     expect(option.children.length).to.equal(2);
   });
 
+  describe('state', function() {
+    describe('if placeholderInMessage is true', function() {
+      element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
+      it('renders with different errorMessage', function() {
+        element.getInitialState();
+        expect(element.state.errorMessage).to.equal('An error has occured XXXX');
+      });
+    });
+  });
+
   describe('props', function() {
     var placeholderValue;
     var validatorValue;
@@ -77,6 +87,14 @@ describe('Car Reg component', function() {
         expect(input.props.placeholder).to.equal('1234');
       });
     });
+
+    // describe('if placeholderInMessage is true', function() {
+    //   element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
+    //   it('renders with different errorMessage', function() {
+    //     select.handleChange({ currentTarget: { selectedIndex: 1 } });
+    //     expect(input.props.errorMessage).to.equal('1234');
+    //   });
+    // });
 
     describe('if only name is set', function() {
 

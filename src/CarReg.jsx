@@ -84,7 +84,7 @@ var CarReg = React.createClass({
               return <option key={index}>{option.text}</option>;
             })}
           </UIToolkit.Select>
-          <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.state.errorMessage} handleChange={this.props.inputEntered}/>
+          <UIToolkit.Input id="carRegistration" name="Registration" type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.state.errorMessage} handleChange={this.props.inputEntered}/>
         </div>
       </div>
     );

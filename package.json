@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "gulp build-all",
     "test": "gulp test",
+    "build-dist": "gulp build-dist",
     "start": "gulp start",
     "lint": "make-up src test",
     "publish-docs": "gulp publish-docs",

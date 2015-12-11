@@ -17,7 +17,8 @@ var CarReg = React.createClass({
     ),
     errorMessage: React.PropTypes.string,
     children: React.PropTypes.any,
-    inputEntered: React.PropTypes.func
+    inputEntered: React.PropTypes.func,
+    placeholderInMessage: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
@@ -26,53 +27,64 @@ var CarReg = React.createClass({
       errorMessage: 'An error has occured',
       labelContainerClass: 'labelContainer',
       inputContainerClass: 'inputContainer',
+      placeholderInMessage: false,
       options: [
         { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[ ]{0,1}[A-Z]{0,2}\s?[0-9]{1,4}[H]{0,1}/i },
-        { text: 'Anderes Land', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Belgien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Danemark', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Frankreich', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Italien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Luxemburg', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Niederlande', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Osterreich', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Polen', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Schweiz', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Slowenien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Spanien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
-        { text: 'Tschechien', placeholder: 'XXX-XX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i }
+        { text: 'Anderes Land', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Belgien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Danemark', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Frankreich', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Italien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Luxemburg', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Niederlande', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Osterreich', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Polen', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Schweiz', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Slowenien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Spanien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
+        { text: 'Tschechien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i }
       ]
     };
   },
 
   getInitialState: function() {
+    var eMessage = this.props.errorMessage + this.props.options[0].placeholder;
     return {
       placeholder: this.props.options[0].placeholder || null,
-      validation: this.props.options[0].validation || null
+      validation: this.props.options[0].validation || null,
+      errorMessage: this.props.placeholderInMessage ? eMessage : this.props.errorMessage
     };
   },
 
   optionChanged: function(e) {
     var selectedIndex = e.currentTarget.selectedIndex;
+    var eMessage = this.props.errorMessage;
+
+    if (this.props.placeholderInMessage) {
+      eMessage = eMessage + this.props.options[selectedIndex].placeholder;
+    }
+
+
     this.setState({
       placeholder: this.props.options[selectedIndex].placeholder,
-      validation: this.props.options[selectedIndex].validation
+      validation: this.props.options[selectedIndex].validation,
+      errorMessage: eMessage
     });
   },
 
   render: function() {
     return (
       <div className="carReg">
-        <div className="{this.props.labelContainerClass}">
+        <div className={this.props.labelContainerClass}>
           <label>{this.props.label}</label>
         </div>
-        <div className="{this.props.inputContainerClass}">
+        <div className={this.props.inputContainerClass}>
           <UIToolkit.Select handleChange={this.optionChanged}>
             {this.props.options.map(function(option, index) {
               return <option key={index}>{option.text}</option>;
             })}
           </UIToolkit.Select>
-          <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.props.errorMessage} handleChange={this.props.inputEntered}/>
+          <UIToolkit.Input type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.state.errorMessage} handleChange={this.props.inputEntered}/>
         </div>
       </div>
     );

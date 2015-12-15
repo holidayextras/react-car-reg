@@ -1,47 +1,26 @@
 # React Car Registration
 A react component for validating car registrations.
 
-## Installation
-```
-npm install
-```
-
-## Development
-### Running the dev server
-
 #### Props
-`title`  String - Heading to appear in modal  
-`message`  String - Descriptive message to appear in modal  
-`handleAccept`  Function - Callback for when the user accepts the upsell  
-`handleDecline`  Function - Callback for when the user declined the upsell  
-`handleDismiss`  Function - Callback for when the user dismisses the modal  
-`handleLaunch`  Function - Callback for when the user opens the modal  
-`acceptButtonLabel`  String - Optional update the text for the accept button (default is "Yes please")  
-`declineButtonLabel`  String - Optional update the text for the decline button (default is "No thanks")  
-`animation`  Boolean - Optional animate in/out the modal (default is false)  
-`closeButton`  Boolean - Optional show the close `x` at the top right of the modall (default is true)
-
-### TrackableUpsellModal
-
-Wrapper for UpsellModal that includes [TrackerJS](https://github.com/holidayextras/tracker).
-
-```
-const { TrackableUpsellModal } = require('react-upsell-modal');
-const { render } = require('react-dom');
-
-render(<TrackableUpsellModal {...props}>Button Text Here</TrackableUpsellModal>, document.getElementById('example'));
-```
-#### Props
-`trackingData`  Object - data to send to the various tracking services
-
+`label`  String - Header that appears next to select box
+`options`  Array - Contains options for the select  
+  `text`  String - Required, option name
+  `placeholder`  String - Placeholder that will appear in the input field
+  `validation`  RegExp - The regex that will be applied to the input field
+`labelContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
+`inputContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
+`errorMessage`  String - Error that is shown when the input doesn't match the regex
+`inputEntered`  Function - Callback that provides the app with the data entered
+`inputName`  String - Name applied to the input class
+`placeholderInMessage`  Boolean - True to show the placeholder at the end of the error message
 
 ## Development
 
 ### Installation
 
 ```
-git clone git@github.com:holidayextras/react-upsell-modal.git
-cd react-upsell-modal
+git clone git@github.com:holidayextras/react-car-reg.git
+cd react-car-reg
 npm install
 ```
 

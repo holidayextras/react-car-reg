@@ -3,6 +3,7 @@
 require('./helpers/');
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var UIToolkit = require('ui-toolkit');
 var TestUtils = require('react-addons-test-utils');
 var sinon = require('sinon');
@@ -28,8 +29,24 @@ describe('Car Reg component', function() {
     select = TestUtils.findRenderedComponentWithType(element, UIToolkit.Select);
   });
 
+  afterEach(function(done) {
+    ReactDOM.unmountComponentAtNode(document.body);
+    document.body.innerHTML = '';
+    setTimeout(done);
+  });
+
+
   it('is a valid React element', function() {
     expect(TestUtils.isElement(<CarReg options={options} />)).to.equal(true);
+  });
+
+  describe('when placeholderInMessage is true', function() {
+    it('renders with different errorMessage', function() {
+      element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
+      input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
+      var messageValue = input.props.errorMessage;
+      expect(messageValue).to.equal('An error has occured XXXX');
+    });
   });
 
   it('renders with default props', function() {
@@ -44,26 +61,9 @@ describe('Car Reg component', function() {
     expect(option.children.length).to.equal(2);
   });
 
-  describe('state', function() {
-    describe('if placeholderInMessage is true', function() {
-      element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
-      it('renders with different errorMessage', function() {
-        element.getInitialState();
-        expect(element.state.errorMessage).to.equal('An error has occured XXXX');
-      });
-    });
-  });
-
   describe('props', function() {
-    var placeholderValue;
-    var validatorValue;
-
-    beforeEach(function() {
-      placeholderValue = input.props.placeholder;
-      validatorValue = input.props.validator;
-    });
-
     it('is rendered with placeholder', function() {
+      var placeholderValue = input.props.placeholder
       expect(placeholderValue).to.equal('XXXX');
     });
 
@@ -88,6 +88,10 @@ describe('Car Reg component', function() {
       });
     });
 
+
+
+
+
     // describe('if placeholderInMessage is true', function() {
     //   element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
     //   it('renders with different errorMessage', function() {
@@ -108,14 +112,20 @@ describe('Car Reg component', function() {
       });
 
       it('placeholder should be null', function() {
-        placeholderValue = input.props.placeholder;
+        var placeholderValue = input.props.placeholder;
         expect(placeholderValue).to.equal(null);
       });
 
       it('validation should be null', function() {
-        validatorValue = input.props.validator;
+        var validatorValue = input.props.validator;
         expect(validatorValue).to.equal(null);
       });
+
+      it('errorMessage should be default', function(){
+        var messageValue = input.props.errorMessage;
+        expect(messageValue).to.equal('An error has occured');
+      });
+
     });
 
   });

@@ -18,6 +18,7 @@ var CarReg = React.createClass({
     errorMessage: React.PropTypes.string,
     children: React.PropTypes.any,
     inputEntered: React.PropTypes.func,
+    inputName: React.PropTypes.string,
     placeholderInMessage: React.PropTypes.bool
   },
 
@@ -28,8 +29,9 @@ var CarReg = React.createClass({
       labelContainerClass: 'labelContainer',
       inputContainerClass: 'inputContainer',
       placeholderInMessage: false,
+      inputName: "Registration",
       options: [
-        { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[ ]{0,1}[A-Z]{0,2}\s?[0-9]{1,4}[H]{0,1}/i },
+        { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[A-ZÄÖÜ]{1,2}\s{1}[0-9]{1,4}/i },
         { text: 'Anderes Land', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
         { text: 'Belgien', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
         { text: 'Danemark', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
@@ -48,7 +50,7 @@ var CarReg = React.createClass({
   },
 
   getInitialState: function() {
-    var eMessage = this.props.errorMessage + this.props.options[0].placeholder;
+    var eMessage = this.props.errorMessage + ' ' + this.props.options[0].placeholder;
     return {
       placeholder: this.props.options[0].placeholder || null,
       validation: this.props.options[0].validation || null,
@@ -84,7 +86,7 @@ var CarReg = React.createClass({
               return <option key={index}>{option.text}</option>;
             })}
           </UIToolkit.Select>
-          <UIToolkit.Input id="carRegistration" name="Registration" type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.state.errorMessage} handleChange={this.props.inputEntered}/>
+          <UIToolkit.Input name={this.props.inputName} type="text" placeholder={this.state.placeholder} validator={this.state.validation} errorMessage={this.state.errorMessage} handleChange={this.props.inputEntered}/>
         </div>
       </div>
     );

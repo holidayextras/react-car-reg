@@ -44,8 +44,7 @@ describe('Car Reg component', function() {
     it('renders with different errorMessage', function() {
       element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
       input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
-      var messageValue = input.props.errorMessage;
-      expect(messageValue).to.equal('An error has occured XXXX');
+      expect(input.props.errorMessage).to.equal('An error has occured XXXX');
     });
   });
 
@@ -63,7 +62,7 @@ describe('Car Reg component', function() {
 
   describe('props', function() {
     it('is rendered with placeholder', function() {
-      var placeholderValue = input.props.placeholder
+      var placeholderValue = input.props.placeholder;
       expect(placeholderValue).to.equal('XXXX');
     });
 
@@ -86,19 +85,16 @@ describe('Car Reg component', function() {
         select.handleChange({ currentTarget: { selectedIndex: 1 } });
         expect(input.props.placeholder).to.equal('1234');
       });
+
+      describe('if placeholderInMessage is true', function() {
+        it('renders with different errorMessage', function() {
+          element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
+          element.optionChanged({ currentTarget: { selectedIndex: 1 } });
+          input = TestUtils.findRenderedComponentWithType(element, UIToolkit.Input);
+          expect(input.props.errorMessage).to.equal('An error has occured 1234');
+        });
+      });
     });
-
-
-
-
-
-    // describe('if placeholderInMessage is true', function() {
-    //   element = TestUtils.renderIntoDocument(<CarReg options={options} placeholderInMessage={true}/>);
-    //   it('renders with different errorMessage', function() {
-    //     select.handleChange({ currentTarget: { selectedIndex: 1 } });
-    //     expect(input.props.errorMessage).to.equal('1234');
-    //   });
-    // });
 
     describe('if only name is set', function() {
 
@@ -121,7 +117,7 @@ describe('Car Reg component', function() {
         expect(validatorValue).to.equal(null);
       });
 
-      it('errorMessage should be default', function(){
+      it('errorMessage should be default', function() {
         var messageValue = input.props.errorMessage;
         expect(messageValue).to.equal('An error has occured');
       });

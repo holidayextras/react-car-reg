@@ -29,7 +29,7 @@ var CarReg = React.createClass({
       labelContainerClass: 'labelContainer',
       inputContainerClass: 'inputContainer',
       placeholderInMessage: false,
-      inputName: "Registration",
+      inputName: 'Registration',
       options: [
         { text: 'Deutschland', placeholder: 'XXX-AA 9999', validation: /^[A-ZÄÖÜ]{1,3}\-[A-ZÄÖÜ]{1,2}\s{1}[0-9]{1,4}/i },
         { text: 'Anderes Land', placeholder: 'XXX-XXX-XXX', validation: /^[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}\-[A-Z0-9]{1,3}/i },
@@ -63,9 +63,8 @@ var CarReg = React.createClass({
     var eMessage = this.props.errorMessage;
 
     if (this.props.placeholderInMessage) {
-      eMessage = eMessage + this.props.options[selectedIndex].placeholder;
+      eMessage = eMessage + ' ' + this.props.options[selectedIndex].placeholder;
     }
-
 
     this.setState({
       placeholder: this.props.options[selectedIndex].placeholder,

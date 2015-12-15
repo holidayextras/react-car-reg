@@ -2,17 +2,17 @@
 A react component for validating car registrations.
 
 #### Props
-`label`  String - Header that appears next to select box
-`options`  Array - Contains options for the select  
-  `text`  String - Required, option name
-  `placeholder`  String - Placeholder that will appear in the input field
-  `validation`  RegExp - The regex that will be applied to the input field
-`labelContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
-`inputContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
-`errorMessage`  String - Error that is shown when the input doesn't match the regex
-`inputEntered`  Function - Callback that provides the app with the data entered
-`inputName`  String - Name applied to the input class
-`placeholderInMessage`  Boolean - True to show the placeholder at the end of the error message
+* `label`  String - Header that appears next to select box
+* `options`  Array - Contains options for the select  
+  * `text`  String - Required, option name
+  * `placeholder`  String - Placeholder that will appear in the input field
+  * `validation`  RegExp - The regex that will be applied to the input field
+* `labelContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
+* `inputContainerClass`  String - Name that will be applied to the class containing the label (Useful for bootstrap classes)
+* `errorMessage`  String - Error that is shown when the input doesn't match the regex
+* `inputEntered`  Function - Callback that provides the app with the data entered
+* `inputName`  String - Name applied to the input class
+* `placeholderInMessage`  Boolean - True to show the placeholder at the end of the error message
 
 ## Development
 

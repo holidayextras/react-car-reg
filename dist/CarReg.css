@@ -1,0 +1,8 @@
+.inputContainer,
+.labelContainer {
+  float: left;
+}
+.component-select,
+.component-input {
+  float: left;
+}

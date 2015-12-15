@@ -18,7 +18,7 @@ var NPM_JS = ['./src/**/*.js*'];
 var NPM_STYLES = ['./src/**/*.less', './src/**/*.css'];
 var DEMO_JS = ['./demo/src/**/*.js*'];
 var DEMO_DEST = './demo/www/';
-var NPM_DEST = './lib/';
+var NPM_DEST = './dist/';
 var GH_PAGES = DEMO_DEST + '**/*';
 var TESTS = ['./test/**/test*.jsx'];
 

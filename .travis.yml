@@ -7,6 +7,7 @@ cache:
   directories:
   - node_modules
 script: npm run ci
+script: npm run postinstall
 deploy:
   provider: s3
   access_key_id: AKIAJBKWFTK2WOXCD5MQ
@@ -15,6 +16,7 @@ deploy:
   bucket: hx-production-repo
   skip_cleanup: true
   region: eu-west-1
+  local-dir: dist
   upload-dir: react-car-reg
   upload_dir: react-car-reg
   acl: public_read

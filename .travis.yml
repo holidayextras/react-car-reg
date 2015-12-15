@@ -1,21 +1,17 @@
 sudo: false
 language: node_js
-
 install:
 - npm install npm@2.9.1
 - ./node_modules/.bin/npm install
-
 cache:
   directories:
   - node_modules
-
 script: npm run ci
-
 deploy:
   provider: s3
-  access_key_id: AKIAIXRQBN5223M74JDA
+  access_key_id: AKIAJBKWFTK2WOXCD5MQ
   secret_access_key:
-    secure: "VWTpaHuR3ZMxQPiNyNsSJ3EuOQavIgQugyzSeyE83OrCImAIDlqpw/2OGElOgzHxqqy4nUnNXEKmad1hANGphH+DyzlowODqaO9fn94RcwrMGWluJW4iLWovezLqESRR1XQyMD/iouiVkVbaY5eo5QnTm5iMIuLHwY3yUwSkFN82waUllIHhHJ8qnKQi/tmx2J2IGkHnikKlaGaDcO5SaZqyshAnGu0svpv/3YktTf/tzZH1vRBp8dYppyISSa3shHjiWBopPvs782youafbBQw768s55QqzdZEGLpRAf1SJJ3rG4gEFsjofRmtXyB+P/vT2ZnVus4IkVNf4v9PVp0N//SPLX3ApXKTeli1kTIdoE+u7iUL866Kq58oCqijsTSfW0HvzQ5hZJusIcsm3st1d3wW09DXEN/RxJODu4JUCHv58F60xlgp8mgylFoBK7V4VZ8uWkpOB5b9fEsnoF3BTETlz4LZGRBcjYnb7GH7Yab9nxOrdelPWtWV/+dLwS2F+UBF0s6n9+jHDA14oVT4PNHJ1c7XnuCqf+lrVuySWZsUvyRS13hPnAeEN8IsyvtRit74winf9jUTfJIuv765X4e0JwVg3+EshqJ1HmthUCu2Pafq5AjTvZ9kToXCgKuwlp/J0fSIAtrMbeAPSr2joLXDW570CskFPZ0Lkl4E="
+    secure: FQmqBlK8Fykj8hN5mUX/FdSNCnqX9dUNSuI/052TRDt64Wm/iIYs/HS7f2Qs68SdCSpDqzW2viG4Aoz2hLvnDPeLpUsLLeRRDzm6vQ2svKxm+xV4M1RRO1JjL1bRXWXeekb0D9C4aRlbzN38TtEPJ2K3IoiKz0OAlzUMCVyKrF9reoFrKDyYQdnEr+Kg1tGLZb3XQRUVAWg7lzY2zcUGFjgTYBsbu1gUKZ/3PV/4pT+XdpAGWLFDrGVaPBX8AiRaPBRgFySKDga+Oev2vitwzeIh7VBijkkIvjeQYUR9v2A5uQu5mPLmi/B0bDTEAi5MbPNKa1Ugqve/6WsRA8tctnp3wqsMA4vzBWgTQ2jQzC297QPDzO8afwNYrUiZOgmXMYXYH5r+vK6/DHK8ORDbHNi5S0PBvYnSCUMyxfWPiaeoQ2tVUPk/SEeJEV2hOny8TRxhvcvjWR4Y9lkvNkxl8izkOWLlGMtRjblIfyzoEsO0Ra5Q057ldEpj73kn/IAIvsb1dX7KctggaHakdEEQ4vPInOkuzgt/h/lLsx2mumnH2DlYexwtWAMle37GWY/QlNy3XsH28cG/+rJKDydrgcm85XWlRZY6vKRG/r72VGQfn3b9r+lDaorI07MrlzBKEtQHi1hYd8GA53lRUgsxmhmzbgzGMz/iZZ/t5UcAm74=
   bucket: hx-production-repo
   skip_cleanup: true
   region: eu-west-1

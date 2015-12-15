@@ -1,4 +1,4 @@
-var CarReg = require('../../lib/CarReg.js');
+var CarReg = require('../../dist/CarReg.js');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
